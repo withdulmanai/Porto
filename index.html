@@ -821,34 +821,54 @@
     </div>
 
     <div class="action-sheet-overlay" id="hire-sheet-overlay" onclick="toggleHireSheet(false)">
-        <div class="action-sheet" id="hire-sheet" onclick="event.stopPropagation()">
-            <div style="width: 40px; height: 4px; background: #E4E7EC; border-radius: 10px; margin: 0 auto 25px auto;"></div>
-            <h3 style="text-align: center; margin-bottom: 25px;">Mulai Diskusi</h3>
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <div class="skill-tag" style="padding: 15px;">
+    <div class="action-sheet" id="hire-sheet" onclick="event.stopPropagation()">
+        <div style="width: 40px; height: 4px; background: #E4E7EC; border-radius: 10px; margin: 0 auto 25px auto;"></div>
+        <h3 style="text-align: center; margin-bottom: 25px;">Mulai Diskusi</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            
+            <a href="https://wa.me/6285814176764" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="skill-tag" style="padding: 15px; cursor: pointer;">
                     <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 24px;"></i>
                     <div>
                         <b>WhatsApp</b>
                         <p style="font-size: 12px; color: var(--text-muted);">Konsultasi Cepat</p>
                     </div>
                 </div>
-                <div class="skill-tag" style="padding: 15px;">
-                    <i class="fa-solid fa-envelope" style="color: var(--primary-blue); font-size: 24px;"></i>
-                    <div>
-                        <b>Email</b>
-                        <p style="font-size: 12px; color: var(--text-muted);">Kirim Penawaran</p>
-                    </div>
-                </div>
-                <div class="skill-tag" style="padding: 15px;">
-                    <i class="fa-solid fa-phone" style="color: var(--primary-blue); font-size: 24px;"></i>
-                    <div>
-                        <b>Telepon</b>
-                        <p style="font-size: 12px; color: var(--text-muted);">Diskusi Langsung</p>
-                    </div>
-                </div>
-            </div>
+            </a>
+
+            <a href="mailto:arahman20022022@gmail.com?subject=Penawaran%20Proyek%20Baru%20-%20[Nama%20Perusahaan]&body=Halo%20Abdul%20Rahman,%20saya%20tertarik%20untuk%20berdiskusi%20mengenai..." style="text-decoration: none; color: inherit;">
+    <div class="skill-tag" style="padding: 15px; cursor: pointer;">
+        <i class="fa-solid fa-envelope-open-text" style="color: var(--primary-blue); font-size: 24px;"></i>
+        <div>
+            <b>Kirim Email</b>
+            <p style="font-size: 12px; color: var(--text-muted);">Ajukan Kerja Sama / Penawaran</p>
         </div>
     </div>
+</a>
+
+           <div class="skill-tag" style="padding: 15px; cursor: pointer;" onclick="copyPhoneNumber('085814176764)">
+    <i class="fa-solid fa-copy" style="color: var(--primary-blue); font-size: 24px;"></i>
+    <div>
+        <b>Salin Nomor Telepon</b>
+        <p id="phone-status" style="font-size: 12px; color: var(--text-muted);">085814176764</p>
+    </div>
+</div>
+
+<hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+
+<a href="https://drive.google.com/file/d/1Hzn988dQnthgZ_IB70PD53VWpSr50aGK/view?usp=sharing" target="_blank" style="text-decoration: none; color: inherit;">
+    <div class="skill-tag" style="padding: 15px; cursor: pointer; background-color: #f9fafb;">
+        <i class="fa-solid fa-eye" style="color: #6366f1; font-size: 24px;"></i>
+        <div>
+            <b>Lihat Kurikulum Vitae</b>
+            <p style="font-size: 12px; color: var(--text-muted);">Buka via Google Drive</p>
+        </div>
+    </div>
+</a>
+        </div>
+    </div>
+</div>
 
     <script>
         const projects = [
@@ -993,6 +1013,26 @@
                 modalHero.innerHTML = ''; 
             }, 300);
         }
+
+        function copyPhoneNumber(number) {
+    navigator.clipboard.writeText(number).then(() => {
+        const status = document.getElementById('phone-status');
+        const originalText = status.innerText;
+        
+        // Memberi feedback visual saat berhasil disalin
+        status.innerText = "Nomor berhasil disalin!";
+        status.style.color = "#25D366";
+        status.style.fontWeight = "bold";
+
+        setTimeout(() => {
+            status.innerText = originalText;
+            status.style.color = "var(--text-muted)";
+            status.style.fontWeight = "normal";
+        }, 2000);
+    }).catch(err => {
+        console.error('Gagal menyalin: ', err);
+    });
+}
 
         function toggleHireSheet(show) {
             const overlay = document.getElementById('hire-sheet-overlay');
